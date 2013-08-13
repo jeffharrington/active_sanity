@@ -22,6 +22,12 @@ module ActiveSanity
       load_all_models
 
       @models ||= direct_active_record_base_descendants
+
+      unless InvalidRecord.table_exists?
+        @models.delete(InvalidRecord)
+      end      
+
+      @models        
     end
 
     protected
